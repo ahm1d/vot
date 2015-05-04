@@ -136,11 +136,30 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
+.login-link-text {
+	.heading-font;
+
+    display: block;
+	padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white;
+    &:hover,
+    &:focus {
+        color: @brand-primary;
+        outline: none;
+    }
+}
+
 @media(min-width:768px) {
     .navbar-default {
     	background-color: black;
-	color : white;
-        padding: 25px 0;
+	    color : white;
+        padding: 0px 0;
         -webkit-transition: padding 0.3s;
         -moz-transition: padding 0.3s;
         transition: padding 0.3s;
@@ -195,8 +214,8 @@ header {
 @media(min-width:768px) {
 	header {
 		.intro-text {
-			padding-top: 300px;
-			padding-bottom: 400px;
+			padding-top: 100px;
+			padding-bottom: 50px;
 			.intro-lead-in {
 				.serif-font;
 				font-style: italic;
@@ -218,7 +237,7 @@ header {
 // Global Section Styles
 
 section {
-    padding: 100px 0;
+    padding: 70px 0;
     h2.section-heading {
 		font-size: 40px;
 		margin-top: 0;
@@ -230,13 +249,13 @@ section {
 		text-transform: none;
 		font-style: italic;
 		font-weight: 400;
-		margin-bottom: 75px;
+		margin-bottom: 30px;
     }
 }
 
 @media(min-width:768px) {
 	section {
-		padding: 150px 0;
+		padding: 70px 0;
 	}
 }
 
@@ -247,7 +266,7 @@ section {
 	text-transform: none;
 }
 
-// Popular and search Section
+// Popular Section
 
 #popular {
    * {
@@ -729,3 +748,14 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: @brand-primary;
 }
+
+
+// Flags for language selection
+.flag {
+	width: 16px;
+	height: 11px;
+	background:url(flags.png) no-repeat
+}
+
+.flag.flag-fr {background-position: -16px 0}
+.flag.flag-gb {background-position: 0 -11px}

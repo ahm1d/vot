@@ -17,10 +17,13 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a class="page-scroll" href="explore">Explore</a>
+                        <a href="explore">Explore</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="newvoice">Give your voice</a>
+                        <a href="howitworks">How it works</a>
+                    </li>
+                    <li>
+                        <a href="newvoice">Share a voice</a>
                     </li>
                     <li>
                         <div class="pull-left">
@@ -36,18 +39,18 @@
                     </li>
                 </ul>
 
-
-
-
-
                 <ul class="nav navbar-nav navbar-right">
-                    {{> loginButtons}}
+                    <li><a class="fr" href=""><img src="blank.gif" class="flag flag-fr" alt="Français" /></a>
+                    </li>
+
+                    <li><a class="en" href=""><img src="blank.gif" class="flag flag-gb" alt="English" /></a>
+                        </li>
+
+                    {{> loginButtons align="right"}}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
-
-
     </nav>
 </template>

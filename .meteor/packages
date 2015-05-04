@@ -8,10 +8,12 @@ meteor-platform
 less
 twbs:bootstrap
 linto:jquery-ui
-ian:accounts-ui-bootstrap-3
 accounts-password
 accounts-facebook
 aldeed:collection2
 manuelschoebel:ms-seo
 iron:router
 linto:fontawesome
+tap:i18n
+accounts-ui
+accounts-twitter

@@ -18,7 +18,6 @@ var routerHooks = {
     // make sure to scroll to the top of the page on a new route
     // Use: global
     scrollUp: function() {
-        /*$('body,html').scrollTop(0);*/
         $('html, body').stop().animate({
                     scrollTop: 0
                 }, 750, 'easeInOutExpo');
