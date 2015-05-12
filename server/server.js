@@ -1,16 +1,17 @@
 // Methods
 Meteor.methods({
-  addVoice: function (name, category, description, location) {
+  addVoice: function (name, category, description, location, picture) {
     // Make sure the user is logged in before inserting a Voice
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
 
-    voices.insert({
+    Voices.insert({
       name: name,
       category: category,
       description: description,
       location:location,
+      picture:picture,
       owner: Meteor.userId(),
       createdAt: new Date()
     });
@@ -20,15 +21,19 @@ Meteor.methods({
 
   deleteVoice: function (voiceId) {
     // TODO : add user id and permission controls
-    voices.remove(voiceId);
+    Voices.remove(voiceId);
   }
 });
 
-// limit what client sees.
+// limit what the client sees.
 Meteor.publish("voices", function () {
-                   return voices.find({}, {limit: 10});
-                 });
+    return Voices.find({}, {limit: 10});
+});
 
 Meteor.publish("voicesbyname", function (name) {
-                   return voices.find({$text : {$search : name}});
-                 });
+    return Voices.find({$text : {$search : name}});
+});
+
+Meteor.publish("images", function(){
+    return Images.find();
+});

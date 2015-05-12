@@ -61,6 +61,16 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: @gray-darkest;
 }
 
+// Progress bar
+#iron-router-progress {
+    background-color : @brand-primary;
+    box-shadow       : 0 0 5px @brand-primary;
+}
+
+#iron-router-progress.spinner:before {
+    border-color : @brand-primary;
+}
+
 // Restyled Primary Buttons
 
 .btn-primary {
@@ -214,8 +224,8 @@ header {
 @media(min-width:768px) {
 	header {
 		.intro-text {
-			padding-top: 100px;
-			padding-bottom: 50px;
+			padding-top: 150px;
+			padding-bottom: 270px;
 			.intro-lead-in {
 				.serif-font;
 				font-style: italic;

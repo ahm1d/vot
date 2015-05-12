@@ -1,25 +1,36 @@
-voices = new Mongo.Collection('voices');
+Voices = new Mongo.Collection('voices');
 
-voices.attachSchema(
+Voices.attachSchema(
     new SimpleSchema({
     name: {
-      type: String
+       type: String,
+       max : 60
     },
     category: {
-      type: String
+       type: String
     },
     description: {
-      type: String
+       type: String
     },
     location: {
-          type: String
+       type: String
+    },
+    picture: {
+        type: String,
+        autoform: {
+            afFieldInput: {
+                type: 'fileUpload',
+                collection: 'Images',
+                accept: 'image/*'
+            }
+        }
     },
     owner: {
-          type: String
+       type: String
     },
     createdAt: {
-      type: Date,
-      denyUpdate: true
+       type: Date,
+       denyUpdate: true
     }
   })
 );
@@ -27,7 +38,7 @@ voices.attachSchema(
 // Collection2 already does schema checking
 // Add custom permission rules if needed
 if (Meteor.isServer) {
-  voices.allow({
+  Voices.allow({
     insert : function () {
       return true;
     },

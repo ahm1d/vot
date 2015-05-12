@@ -1,9 +1,7 @@
 Meteor.startup(function () {
-    Session.set("showLoadingIndicator", true);
-
     TAPi18n.setLanguage("fr")
       .done(function () {
-        Session.set("showLoadingIndicator", false);
+        //Session.set("showLoadingIndicator", false);
       })
       .fail(function (error_message) {
         // Handle the situation

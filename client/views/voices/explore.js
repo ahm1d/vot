@@ -1,5 +1,5 @@
 Template.explore.helpers({
         voices: function () {
-            return voices.find({}, {sort: {createdAt: -1}});
+            return Voices.find({}, {sort: {createdAt: -1}});
         }
 });

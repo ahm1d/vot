@@ -6,7 +6,6 @@ Template.navbar.events({
            if (srch==""){
               Router.go('explore');
            } else {
-              srch=srch.replace(" ","_");
               Router.go('explore.byname', {_name: srch});
            }
 
@@ -14,8 +13,6 @@ Template.navbar.events({
            return false;
         },
         "click .fr": function (event) {
-             Session.set("showLoadingIndicator", true);
-
              TAPi18n.setLanguage("fr")
                .done(function () {
                  Session.set("showLoadingIndicator", false);
@@ -26,8 +23,6 @@ Template.navbar.events({
                });
         },
         "click .en": function (event) {
-              Session.set("showLoadingIndicator", true);
-
               TAPi18n.setLanguage("en")
                 .done(function () {
                   Session.set("showLoadingIndicator", false);
@@ -43,11 +38,3 @@ Template.navbar.events({
                               }, 750, 'easeInOutExpo');
         }
 });
-
-/*Template.navbar.rendered=function () {
-    $(function() {
-        $("#login-sign-in-link").css("font-weight", "700");
-        $("#login-sign-in-link").css("letter-spacing", "1px");
-    });
-};*/
-

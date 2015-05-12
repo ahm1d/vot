@@ -17,13 +17,10 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a href="explore">Explore</a>
+                        <a href="/explore">{{_ "explore"}}</a>
                     </li>
                     <li>
-                        <a href="howitworks">How it works</a>
-                    </li>
-                    <li>
-                        <a href="newvoice">Share a voice</a>
+                        <a href="/newvoice">{{_ "shareyourvoice"}}</a>
                     </li>
                     <li>
                         <div class="pull-left">
@@ -40,13 +37,13 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="fr" href=""><img src="blank.gif" class="flag flag-fr" alt="Français" /></a>
+                    <li><a class="fr" href="?lang=fr"><img src="blank.gif" class="flag flag-fr"/></a>
                     </li>
 
-                    <li><a class="en" href=""><img src="blank.gif" class="flag flag-gb" alt="English" /></a>
+                    <li><a class="en" href="?lang=en"><img src="blank.gif" class="flag flag-gb"/></a>
                         </li>
 
-                    {{> loginButtons align="right"}}
+                    <li>{{> loginButtons align="right"}}</li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
