@@ -17,3 +17,11 @@ linto:fontawesome
 tap:i18n
 accounts-ui
 accounts-twitter
+cfs:standard-packages
+cfs:gridfs
+cfs:filesystem
+yogiben:autoform-file
+aldeed:simple-schema@1.3.3
+msavin:mongol
+aldeed:autoform
+meteorhacks:kadira

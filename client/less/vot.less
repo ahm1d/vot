@@ -5,6 +5,7 @@
 
 body {
 	overflow-x: hidden;
+	font-size:12px;
 	.body-font;
 }
 
@@ -23,6 +24,14 @@ p {
 
 p.large {
 	font-size: 16px;
+}
+
+.input-group>input{
+    height:2em;
+}
+
+.input-group-btn>button {
+    line-height:1em;
 }
 
 a,
@@ -59,16 +68,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .bg-darkest-gray {
 	background-color: @gray-darkest;
-}
-
-// Progress bar
-#iron-router-progress {
-    background-color : @brand-primary;
-    box-shadow       : 0 0 5px @brand-primary;
-}
-
-#iron-router-progress.spinner:before {
-    border-color : @brand-primary;
 }
 
 // Restyled Primary Buttons
