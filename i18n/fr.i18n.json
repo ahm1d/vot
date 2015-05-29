@@ -1,0 +1,20 @@
+{
+  /*Config*/
+	"configName": "Voice of Tangier",
+	"configTitle": "Make your city a better place.",
+	"configSubtitle": "Work for it!",
+
+  /*Navbar*/
+  "explore" : "Explore",
+  "share" : "Partage ta voix",
+  "profile" : "Profile",
+  "account" : "Compte",
+  "editProfile" : "Editer profile",
+
+  /*Home*/
+  "more" : "En savoir plus",
+
+  /*New voice*/
+  "newvoice_title" : "Partage ta voix..",
+  "newvoice_subtitle" : "..et change le monde autour de toi!"
+}
