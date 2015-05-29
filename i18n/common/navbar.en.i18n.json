@@ -1,4 +1,7 @@
 {
   "explore" : "Explore",
-  "shareyourvoice" : "Share your voice"
+  "shareyourvoice" : "Share your voice",
+  "profile" : "Profile",
+  "account" : "Account",
+  "editProfile" : "Edit profile"
 }

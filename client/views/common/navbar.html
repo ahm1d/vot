@@ -1,6 +1,6 @@
 <template name="navbar">
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -10,18 +10,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="/">Voice of Tangier</a>
+                {{#linkTo route='home'}}<a class="navbar-brand page-scroll">Voice of Tangier</a>{{/linkTo}}
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
+
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a href="/explore">{{_ "explore"}}</a>
+                        {{#linkTo route='explore'}}<i class='fa fa-globe'></i> {{_ "explore"}}{{/linkTo}}
                     </li>
+                    {{#if currentUser}}
                     <li>
-                        <a href="/newvoice">{{_ "shareyourvoice"}}</a>
+                        {{#linkTo route='newvoice'}}<i class='fa fa-send-o'></i> {{_ "shareyourvoice"}}{{/linkTo}}
                     </li>
+                    {{/if}}
                     <li>
                         <div class="pull-left">
                             <form class="navbar-form search-voice" role="search" novalidate>
@@ -36,14 +38,50 @@
                     </li>
                 </ul>
 
+
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="fr" href="?lang=fr"><img src="blank.gif" class="flag flag-fr"/></a>
+                    <li>
+                        <div class="btn-group" style="padding-top:8px;">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <a class="fr" href="?lang=fr"><img src="blank.gif" class="flag flag-fr"/></a>
+                            </button>
+                            <ul class="dropdown-menu" style="min-width:10px;" role="menu">
+                                <li><a class="fr" href="?lang=fr"><img src="blank.gif" class="flag flag-fr"/>&nbsp;</a>
+                                </li>
+                                <li><a class="en" href="?lang=en"><img src="blank.gif" class="flag flag-gb"/>&nbsp;</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
 
-                    <li><a class="en" href="?lang=en"><img src="blank.gif" class="flag flag-gb"/></a>
-                        </li>
+                    <!--<li><div class='nav navbar-nav navbar-right'>{{> loginButtons align="right"}}</div></li>-->
+                    {{#if currentUser}}
+          						{{> notificationsDropdown}}
 
-                    <li>{{> loginButtons align="right"}}</li>
+          						<li class="dropdown hidden-xs">
+          							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.profile.name}} <i class="fa fa-chevron-down i-xs"></i></a>
+          							<ul class="dropdown-menu">
+          								<li><a href="{{pathFor 'profile'}}">{{_ "profile"}}</a></li>
+          								<li><a href="{{pathFor 'account'}}">{{_ "account"}}</a></li>
+          								<li class="divider"></li>
+          								<li><a href="/sign-out">{{_ "signout"}}</a></li>
+          							</ul>
+          						</li>
+          						<li class="visible-xs">
+          							<a href="{{pathFor 'profile'}}" class="close-navbar">{{_ "edit_profile"}}</a>
+          						</li>
+          						<li class="visible-xs">
+          							<a class="close-navbar" href="/sign-out">{{_ "signout"}}</a>
+          						</li>
+          					{{else}}
+          						<li>
+          							<a class="close-navbar" href="/sign-up">{{_ "signup"}}</a>
+          						</li>
+          						<li>
+          							<a class="close-navbar" href="/sign-in">{{_ "login"}}</a>
+          						</li>
+          					{{/if}}
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

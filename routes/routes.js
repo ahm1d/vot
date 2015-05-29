@@ -10,11 +10,12 @@ Router.route('/', {
 
 // Creation of a new Voice
 Router.route('/newvoice', {
+    name:'newvoice',
+
     loadingTemplate: 'loading',
 
     waitOn: function () {
-        Meteor.subscribe('voices');
-       return Meteor.subscribe('images');
+       return Meteor.subscribe('voices');;
     },
 
     action: function () {
@@ -24,17 +25,19 @@ Router.route('/newvoice', {
 
 // Explore all voices in db
 Router.route('/explore', {
+    name:'explore',
+
     // this template will be rendered until the subscriptions are ready
-      loadingTemplate: 'loading',
+    loadingTemplate: 'loading',
 
-      waitOn: function () {
-        // return one handle, a function, or an array
-        return Meteor.subscribe('voices');
-      },
+    waitOn: function () {
+      // return one handle, a function, or an array
+      return Meteor.subscribe('voices');
+    },
 
-      action: function () {
-        this.render('explore');
-      }
+    action: function () {
+      this.render('explore');
+    }
 });
 
 Router.route('/explore/:_name', {
@@ -50,3 +53,44 @@ Router.route('/explore/:_name', {
         this.render('explore');
     }
 });
+
+Router.route('/profile', {
+  name: 'profile',
+
+  loadingTemplate:'loading',
+
+  action: function(){
+      this.render('home');
+  }
+});
+
+Router.route('/account', {
+  name: 'account',
+
+  loadingTemplate:'loading',
+
+  action: function(){
+      this.render('home');
+  }
+});
+
+Router.route('/sign-out', {
+  name: 'sign-out',
+
+  loadingTemplate:'loading',
+
+  onBeforeAction: function() {
+    Meteor.logout();
+    this.redirect('/');
+    return this.next();
+  }
+});
+
+Router.onBeforeAction(function() {
+  if (!Meteor.user()) {
+    this.redirect('/');
+  } else
+  {
+    this.next();
+  }
+}, {only: ['newvoice']});

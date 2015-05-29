@@ -1,4 +1,7 @@
 {
   "explore" : "Explore",
-  "shareyourvoice" : "Partage ta voix"
+  "shareyourvoice" : "Partage ta voix",
+  "profile" : "Profile",
+  "account" : "Compte",
+  "editProfile" : "Editer profile"
 }
