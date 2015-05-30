@@ -25,3 +25,6 @@ aldeed:simple-schema@1.3.3
 msavin:mongol
 aldeed:autoform
 meteorhacks:kadira
+useraccounts:bootstrap
+coffeescript
+yogiben:notifications
