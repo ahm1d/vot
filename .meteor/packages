@@ -28,3 +28,6 @@ meteorhacks:kadira
 useraccounts:bootstrap
 coffeescript
 yogiben:notifications
+yogiben:helpers
+dbarrett:dropzonejs
+yogiben:favorites

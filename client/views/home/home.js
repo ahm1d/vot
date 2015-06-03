@@ -38,3 +38,10 @@ Template.home.rendered=function () {
         }
     });
 };
+
+Template.home.helpers({
+        popular: function () {
+            // TODO : change the request to popular
+            return Voices.find({}, {sort: {createdAt: -1}});
+        }
+});
