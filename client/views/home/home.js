@@ -40,8 +40,8 @@ Template.home.rendered=function () {
 };
 
 Template.home.helpers({
-        popular: function () {
+        popvoices: function () {
             // TODO : change the request to popular
-            return Voices.find({}, {sort: {createdAt: -1}});
+            return Voices.find({}, {limit:3, sort: {createdAt: -1}});
         }
 });

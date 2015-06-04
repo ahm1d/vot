@@ -14,26 +14,8 @@
             </div>
         </div>
     </section>
-</template>
 
-<!-- Single voice template -->
-<template name="voice">
-    <div class="col-md-4 col-sm-6 popular-item">
-        <div class="thumbnail">
-            <a href="voices/{{_id}}" class="popular-link" data-toggle="modal">
-                <div class="popular-hover">
-                    <div class="popular-hover-content">
-                        <i class="fa fa-plus fa-3x"></i>
-                    </div>
-                </div>
-                <img src="img/popular/filsdudetroit.jpg" class="img-responsive" alt="">
-            </a>
-            <div class="popular-caption">
-                <h4>{{name}}</h4>
-                <p class="text-muted">{{category}}</p>
-                <br>
-                {{description}}
-            </div>
-        </div>
-    </div>
+    {{#each voices}}
+        {{> modalvoice}}
+    {{/each}}
 </template>
