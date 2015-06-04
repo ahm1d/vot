@@ -9,11 +9,9 @@
                 </div>
             </div>
             <div class="row">
-              {{#each popular}}
-                  {{> popularvoice}}
+              {{#each popvoices}}
+                  {{> voice}}
               {{/each}}
-
-
             </div>
         </div>
     </section>
@@ -219,16 +217,14 @@
         </div>
     </section>
 
-    <!-- Portfolio Modals -->
-    <!-- Use the modals below to showcase details about your popular projects! -->
-    {{#each popular}}
-        {{> voicemodal}}
+    {{#each popvoices}}
+        {{> modalvoice}}
     {{/each}}
 
-  </template>
+</template>
 
 
-<template name="popularvoice">
+<template name="voice">
   <div class="col-md-4 col-sm-6 popular-item">
       <a href="#{{_id}}" class="popular-link" data-toggle="modal">
           <div class="popular-hover">
@@ -244,12 +240,13 @@
       <div class="popular-caption">
           <h4>{{name}}</h4>
           <p class="text-muted">{{category}}</p>
+          <br>
+          {{description}}
       </div>
   </div>
 </template>
 
-<template name="voicemodal">
-
+<template name="modalvoice">
   <div class="popular-modal modal fade" id="{{_id}}" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-content">
           <div class="close-modal" data-dismiss="modal">
@@ -269,9 +266,10 @@
                             <img src="{{url}}" class="img-thumbnail img-rounded">
                           {{/with}}
                           <p>{{description}}</p>
-                          
-                          {{> favoriteButton _id=_id}}
 
+                          {{#if currentUser}}
+                            {{> favoriteButton _id=_id}}
+                          {{/if}}
                           <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
                       </div>
                   </div>
