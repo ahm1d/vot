@@ -10,47 +10,23 @@
 
             <div class="row">
                 <div class="col-lg-4 col-md-4">
-                  <!--
-                  {{#autoForm collection='Voices' id='insertVoiceForm' type='insert'}}
-                      <fieldset>
-                          &lt;!&ndash;<legend>Add a voice</legend>&ndash;&gt;
-                          {{> afQuickField name='name'}}
-                          {{> afQuickField name='category'}}
-                          {{> afQuickField name='description' rows=6}}
-                          {{> afQuickField name='location'}}
-                          {{> afQuickField name='picture'}}
-                      </fieldset>
-                      <button type="submit" class="btn btn-primary">Create</button>
+                  {{#autoForm collection="Voices" id="insertVoiceForm" type="insert"}}
+                    <fieldset>
+                      <legend>{{_ "createvoice"}}</legend>
+                      {{> afQuickField name='name'}}
+                      {{> afQuickField name='category'}}
+                      {{> afQuickField name='description' rows=6}}
+                      {{> afQuickField name='location' options='allowed'}}
+                      {{> afQuickField name='picture'}}
+                    </fieldset>
+                    <button type="submit" class="btn btn-primary">Create</button>
                   {{/autoForm}}
 
-                  {{> dropzone url='/upload' id='dropzoneDiv'}}-->
+                  <!--{{> quickForm collection="Voices" id="insertVoiceForm" type="insert" omitFields="voters,votes,closed,owner,createdAt"}}-->
                 </div>
 
                 <div class="col-lg-4 col-md-4">
-                  {{> quickForm collection="Voices" id="insertVoiceForm" type="insert" omitFields="owner,createdAt"}}
 
-                  <!--<div class="panel-body">
-          					<p class="text-center">
-          						{{#with getDoc picture 'Images'}}
-          							<img src="{{url}}" class="img-thumbnail img-rounded">
-          						{{/with}}
-          					</p>
-                  </div>
-
-
-                  <div class="panel panel-default">
-                      <div class="panel-body dropzone-preview">
-                      </div>
-                  </div>
-
-                  <div id="preview-template" style="display: none;"></div>
-
-                  <form action="/file-upload"
-                        class="dropzone"
-                        id="my-awesome-dropzone">
-                      <input name="file" type="file" multiple />
-                  </form>
-                -->
                 </div>
             </div>
         </div>

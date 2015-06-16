@@ -41,7 +41,6 @@ Template.home.rendered=function () {
 
 Template.home.helpers({
         popvoices: function () {
-            // TODO : change the request to popular
-            return Voices.find({}, {limit:3, sort: {createdAt: -1}});
+            return Voices.find({});
         }
 });

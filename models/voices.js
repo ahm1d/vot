@@ -10,10 +10,26 @@ Voices.attachSchema(
        type: String
     },
     description: {
-       type: String
+       type: String,
+       max:2000
     },
     location: {
-       type: String
+       type: String,
+       allowedValues: ["Tanger", "Casablanca"],
+       autoform: {
+         afFieldInput: {
+           firstOption: ""
+         }
+       }
+    },
+    voters:{
+      type: [String],
+      defaultValue: []
+    },
+    votes:{
+      type: Number,
+      defaultValue: 0,
+      min:0
     },
     picture: {
         type: String,
@@ -26,11 +42,19 @@ Voices.attachSchema(
         }
     },
     owner: {
-       type: String
+       type: String,
+       autoValue: function() {
+         return this.userId;
+       }
     },
     createdAt: {
        type: Date,
+       defaultValue: new Date(),
        denyUpdate: true
+    },
+    closed:{
+      type: Boolean,
+      defaultValue: false
     }
   })
 );
@@ -50,6 +74,3 @@ if (Meteor.isServer) {
     }
   });
 }
-
-
-

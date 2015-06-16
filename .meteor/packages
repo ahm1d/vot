@@ -27,7 +27,6 @@ coffeescript
 yogiben:notifications
 yogiben:helpers
 dbarrett:dropzonejs
-yogiben:favorites
 accounts-base
 yogiben:pretty-email
 accounts-twitter
@@ -35,3 +34,4 @@ accounts-facebook
 useraccounts:bootstrap
 service-configuration
 email
+meteorhacks:aggregate

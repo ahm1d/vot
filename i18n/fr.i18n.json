@@ -1,20 +1,25 @@
 {
   /*Config*/
-	"configName": "Voice of Tangier",
-	"configTitle": "Make your city a better place.",
-	"configSubtitle": "Work for it!",
+	"configName": "Voix de Tanger",
+	"configTitle": "Prends soin de ta ville!",
+	"configSubtitle": "Tout simplement.",
 
   /*Navbar*/
+  "voiceoftangier" : "Voix de Tanger",
   "explore" : "Explore",
   "share" : "Partage ta voix",
+  "searchvoices" : "Recherche des voix..",
   "profile" : "Profile",
   "account" : "Compte",
   "editProfile" : "Editer profile",
 
   /*Home*/
   "more" : "En savoir plus",
+  "whatspopular" : "Les plus populaires",
+  "about" : "A propos",
 
   /*New voice*/
   "newvoice_title" : "Partage ta voix..",
-  "newvoice_subtitle" : "..et change le monde autour de toi!"
+  "newvoice_subtitle" : "..et change le monde autour de toi!",
+  "createvoice" : "Créer une voix"
 }

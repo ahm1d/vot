@@ -1,20 +1,25 @@
 {
   /*Config*/
-  "configName": "Voice of Tangier",
+  "configName": "Voix de Tanger",
 	"configTitle": "Make your city a better place.",
 	"configSubtitle": "Work for it!",
 
   /*Navbar*/
+  "voiceoftangier" : "Voix de Tanger",
   "explore" : "Explore",
   "share" : "Share your voice",
+  "searchvoices" : "Search for voices..",
   "profile" : "Profile",
   "account" : "Account",
   "editProfile" : "Edit profile",
 
   /*Home*/
   "more" : "Tell me more",
+  "whatspopular" : "What's popular !",
+  "about" : "About",
 
   /*New voice*/
   "newvoice_title" : "Share your voice..",
-  "newvoice_subtitle" : "..and change the world around you!"
+  "newvoice_subtitle" : "..and change the world around you!",
+  "createvoice" : "Create a voice"
 }

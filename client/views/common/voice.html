@@ -1,0 +1,58 @@
+<template name="voice">
+  <div class="col-md-4 col-sm-6 popular-item">
+      <a href="#{{_id}}" class="popular-link" data-toggle="modal">
+          <div class="popular-hover">
+              <div class="popular-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+              </div>
+          </div>
+
+          {{#with getDoc picture 'Images'}}
+            <img src="{{url}}" class="img-thumbnail img-rounded">
+          {{/with}}
+      </a>
+      <div class="popular-caption">
+          <h4>{{name}}</h4>
+          <p class="text-muted">{{category}}</p>
+          <br>
+          {{description}}
+          <br>
+          <br>
+          <i class="fa fa-thumbs-up"></i> {{votes}}
+      </div>
+  </div>
+</template>
+
+<template name="modalvoice">
+  <div class="popular-modal modal fade" id="{{_id}}" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+              <div class="lr">
+                  <div class="rl">
+                  </div>
+              </div>
+          </div>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+                      <div class="modal-body">
+                          <!-- Project Details Go Here -->
+                          <h2>{{name}}</h2>
+                          <p class="item-intro text-muted">{{category}}</p>
+                          {{#with getDoc picture 'Images'}}
+                            <img src="{{url}}" class="img-thumbnail img-rounded">
+                          {{/with}}
+                          <p>{{description}}</p>
+
+                          {{#if currentUser}}
+                            <button type="button" name="button_{{_id}}" class="btn {{#if novote _id}}btn-primary vote{{else}}btn-success voted{{/if}} "><i class="fa fa-thumbs-up"></i>{{#if novote _id}} Upvote{{/if}}</button>
+                          {{/if}}
+                          <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</template>

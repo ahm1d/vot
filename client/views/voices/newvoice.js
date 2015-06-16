@@ -1,3 +1,6 @@
+////////////////////////////
+// Dropzone configuration //
+////////////////////////////
 Meteor.Dropzone.options.maxFiles = 1;
 Meteor.Dropzone.options.maxFilesize = 1;
 Meteor.Dropzone.options.addRemoveLinks = true;
@@ -21,8 +24,25 @@ Meteor.Dropzone.options.resize= function(file) {
 
 //Meteor.Dropzone.options.previewTemplate= document.querySelector('#preview-template').innerHTML;
 
+////////////////////////////
+// AutoForm Configuration //
+////////////////////////////
 
-// Create a new voice
+// Uncomment for debug logs
+/* AutoForm.debug(); */
+
+var hooksObject = {
+  // Called when any submit operation succeeds
+  onSuccess: function(formType, result) {Router.go('explore');}
+}
+
+AutoForm.hooks({
+  insertVoiceForm: hooksObject
+});
+
+
+// Manual insert.
+/*
 Template.newvoice.events({
         'submit': function (event) {
            Meteor.call("addVoice", event.target.name.value,
@@ -34,3 +54,4 @@ Template.newvoice.events({
            Router.go('explore');
         }
 });
+*/
