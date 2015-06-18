@@ -21,6 +21,7 @@ Template.navbar.events({
                  // Handle the situation
                  console.log(error_message);
                });
+             T9n.setLanguage('fr');
         },
         "click .en": function (event) {
               TAPi18n.setLanguage("en")
@@ -31,6 +32,7 @@ Template.navbar.events({
                   // Handle the situation
                   console.log(error_message);
                 });
+              T9n.setLanguage('en');
         },
         "click .navbar-brand": function (event) {
                $('html, body').stop().animate({

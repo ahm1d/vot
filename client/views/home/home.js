@@ -7,6 +7,7 @@ Meteor.startup(function () {
         // Handle the situation
         console.log(error_message);
       });
+    T9n.setLanguage('fr');
 });
 
 

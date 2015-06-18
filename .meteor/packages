@@ -35,3 +35,5 @@ useraccounts:bootstrap
 service-configuration
 email
 meteorhacks:aggregate
+pcel:loading
+softwarerero:accounts-t9n
