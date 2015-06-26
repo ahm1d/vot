@@ -61,6 +61,9 @@
           						<li class="dropdown hidden-xs">
           							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.profile.name}} <i class="fa fa-chevron-down i-xs"></i></a>
           							<ul class="dropdown-menu">
+                          {{#if isAdmin}}
+                            <li><a href="{{pathFor 'newvoices'}}">{{_ "newvoices"}}</a></li>
+                          {{/if}}
           								<li><a href="{{pathFor 'profile'}}">{{_ "profile"}}</a></li>
           								<li><a href="{{pathFor 'account'}}">{{_ "account"}}</a></li>
           								<li class="divider"></li>

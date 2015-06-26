@@ -1,4 +1,22 @@
 <template name="home">
+  <header id="header" class="main">
+      <div class="container">
+          <!--
+
+          Alert box promoting a special voice. Check hwo to make it appear without changinf others positions in css.
+
+          <div class="alert alert-info alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <a href="#popular"><strong>Check this out !</strong> Les fils du détroit in Berlin !</a>
+          </div>-->
+          <div class="intro-text">
+              <div class="intro-lead-in">La voix de <span class="intro-heading">Tanger</span></div>
+
+              <a href="#popular" class="page-scroll btn btn-xl">{{_ "more"}}</a>
+          </div>
+      </div>
+  </header>
+
     <!-- Popular Grid Section -->
     <section id="popular" class="bg-light-gray">
         <div class="container">

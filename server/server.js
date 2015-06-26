@@ -1,6 +1,8 @@
 // Methods
 Meteor.methods({
+  /*
   addVoice: function (name, category, description, location, picture) {
+
     // Make sure the user is logged in before inserting a Voice
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -18,14 +20,11 @@ Meteor.methods({
       createdAt: new Date(),
       closed:false
     });
-
-    //TODO : message when duplicate
   },
 
   deleteVoice: function (voiceId) {
-    // TODO : add user id and permission controls
     Voices.remove(voiceId);
-  },
+  },*/
 
   upvote: function (voiceId) {
     Voices.update(
@@ -45,6 +44,15 @@ Meteor.methods({
         $inc : {votes : -1}
       }
     );
+  },
+
+  updateProfile: function(id, name) {
+    Users.update(
+      {_id:id},
+      {
+        $set : {name: name}
+      }
+    );
   }
 });
 
@@ -52,13 +60,28 @@ Meteor.methods({
 // Publishing //
 ////////////////
 Meteor.publish("voices", function () {
-  return Voices.find({closed:false},{sort:{createdAt:-1}});
+  return Voices.find({public:true, closed:false},{sort:{createdAt:-1}});
+});
+
+Meteor.publish("voicesbyname", function (name) {
+    return Voices.find({$text : {$search : name}, public:true, closed:false},{sort:{createdAt:-1}});
+});
+
+Meteor.publish("images", function(){
+    return Images.find();
+});
+
+Meteor.publish("newvoices", function () {
+  return Voices.find({public:false},{sort:{createdAt:-1}});
 });
 
 Meteor.publish("popularvoices", function(){
-  return Voices.find({closed:false},{sort:{votes:-1}, limit:3});
+  return Voices.find({public:true, closed:false},{sort:{votes:-1}, limit:3});
+});
 
   /*
+  Meteor.publish("popularvoices", function(){
+
   self = this;
 
   // Get the 3 most voted voices
@@ -89,12 +112,3 @@ Meteor.publish("popularvoices", function(){
     });
   }
   */
-});
-
-Meteor.publish("voicesbyname", function (name) {
-    return Voices.find({$text : {$search : name}});
-});
-
-Meteor.publish("images", function(){
-    return Images.find();
-});

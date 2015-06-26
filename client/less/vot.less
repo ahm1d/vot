@@ -13,6 +13,11 @@
   background-color: #1F3D99;
 }
 
+// Login panel
+.at-form {
+  padding-top: 80px;
+}
+
 // Global Components
 body {
 	overflow-x: hidden;
@@ -122,6 +127,14 @@ h1, h2, h3, h4, h5, h6 {
 	}
     .nav {
     	li {
+        .dropdown-menu {
+          li{
+            a {
+              font-size: 12px;
+            }
+          }
+          background-color: black;
+          }
     		a {
     			.heading-font;
     			font-weight: bold;
@@ -536,6 +549,23 @@ section {
 
 .team-member {
 	text-align: center;
+	margin-bottom: 50px;
+	img {
+		margin: 0 auto;
+		border: 7px solid white;
+	}
+	h4 {
+		margin-top: 25px;
+		margin-bottom: 0;
+		text-transform: none;
+	}
+	p {
+		margin-top: 0;
+	}
+}
+
+.profile {
+  text-align: center;
 	margin-bottom: 50px;
 	img {
 		margin: 0 auto;

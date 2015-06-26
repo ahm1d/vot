@@ -11,3 +11,10 @@ Template.registerHelper('novote',
     return (Voices.find({_id:id, voters:Meteor.userId()}).count() == 0);
   }
 );
+
+// returns a text preview
+Template.registerHelper('preview',
+  function(description){
+    return (description.substring(0,300)+'...');
+  }
+);

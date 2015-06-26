@@ -7,11 +7,12 @@
   /*Navbar*/
   "voiceoftangier" : "Voix de Tanger",
   "explore" : "Explore",
-  "share" : "Elève ta voix",
+  "share" : "Partage ta voix",
   "searchvoices" : "Recherche des voix..",
   "profile" : "Profile",
   "account" : "Compte",
   "editProfile" : "Editer profile",
+  "newvoices" : "Nouvelles voix",
 
   /*Home*/
   "more" : "En savoir plus",

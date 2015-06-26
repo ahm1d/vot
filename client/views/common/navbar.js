@@ -40,3 +40,9 @@ Template.navbar.events({
                               }, 750, 'easeInOutExpo');
         }
 });
+
+Template.navbar.helpers({
+  isAdmin:function(){
+    return Meteor.user().isAdmin;
+  }
+});

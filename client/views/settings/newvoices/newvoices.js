@@ -1,4 +1,4 @@
-Template.explore.helpers({
+Template.newvoices.helpers({
         voices: function () {
             return Voices.find();
         }

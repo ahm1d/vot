@@ -12,6 +12,7 @@
   "profile" : "Profile",
   "account" : "Account",
   "editProfile" : "Edit profile",
+  "newvoices" : "New voices",
 
   /*Home*/
   "more" : "Tell me more",
@@ -19,7 +20,7 @@
   "about" : "About",
 
   /*New voice*/
-  "newvoice_title" : "Share your voice..",
+  "newvoice_title" : "Raise your voice..",
   "newvoice_subtitle" : "..and change the world around you!",
   "createvoice" : "Create a voice"
 }

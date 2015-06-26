@@ -7,7 +7,13 @@ Voices.attachSchema(
        max : 60
     },
     category: {
-       type: String
+       type: String,
+       allowedValues: ["Art", "Music"],
+       autoform: {
+         afFieldInput: {
+           firstOption: ""
+         }
+       }
     },
     description: {
        type: String,
@@ -51,6 +57,10 @@ Voices.attachSchema(
        type: Date,
        defaultValue: new Date(),
        denyUpdate: true
+    },
+    public :{
+      type: Boolean,
+      defaultValue: false
     },
     closed:{
       type: Boolean,
