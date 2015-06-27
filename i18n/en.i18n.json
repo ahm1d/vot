@@ -22,5 +22,26 @@
   /*New voice*/
   "newvoice_title" : "Raise your voice..",
   "newvoice_subtitle" : "..and change the world around you!",
-  "createvoice" : "Create a voice"
+  "createvoice" : "Create a voice",
+  
+  /* Back a voice */
+  "backvoice" : "Back this voice",
+
+  /* Modal voice */
+  "close" : "Close",
+  "upvote" : "Upvote",
+  "backvoice" : "Back this voice",
+  "backedvoice" : "You are backing this voice!",
+
+  /*Profile*/
+  "userprofile" : "User profile",
+  "joined" : "Joined on ",
+  "backed" : "Backed ",
+  "voices" : " voices",
+  "email" : "Email address",
+  "change" : "Change",
+
+  /*Errors*/
+  "err_user_already_exists" : "Username with the same email address already exists.",
+  "err_invalid_login" : "Email and/or password is invalid."
 }

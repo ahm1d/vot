@@ -1,3 +1,4 @@
+// true if route is ready.
 Template.registerHelper ('isRouteReady', function(){
   return Router
           && Router.current
@@ -6,9 +7,16 @@ Template.registerHelper ('isRouteReady', function(){
 });
 
 // if a voice has no votes, return true
-Template.registerHelper('novote',
+Template.registerHelper('voted',
   function(id){
-    return (Voices.find({_id:id, voters:Meteor.userId()}).count() == 0);
+    return (Voices.find({_id:id, voters:Meteor.userId()}).count() != 0);
+  }
+);
+
+// if a voice has no votes, return true
+Template.registerHelper('backed',
+  function(id){
+    return (Voices.find({_id:id, backers:Meteor.userId()}).count() != 0);
   }
 );
 

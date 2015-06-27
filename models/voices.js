@@ -37,6 +37,15 @@ Voices.attachSchema(
       defaultValue: 0,
       min:0
     },
+    backers:{
+      type: [String],
+      defaultValue: []
+    },
+    totalBackers:{
+      type: Number,
+      defaultValue: 0,
+      min:0
+    },
     picture: {
         type: String,
         autoform: {

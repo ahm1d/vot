@@ -1,3 +1,5 @@
+currentLang = 'fr';
+
 // Methods
 Meteor.methods({
   /*
@@ -26,6 +28,10 @@ Meteor.methods({
     Voices.remove(voiceId);
   },*/
 
+  updateLang : function(lang) {
+    currentLang = lang;
+  },
+
   upvote: function (voiceId) {
     Voices.update(
       { _id:voiceId},
@@ -46,11 +52,12 @@ Meteor.methods({
     );
   },
 
-  updateProfile: function(id, name) {
-    Users.update(
-      {_id:id},
+  backvoice: function(voiceId) {
+    Voices.update(
+      { _id:voiceId},
       {
-        $set : {name: name}
+        $addToSet: { backers: this.userId, voters: this.userId },
+        $inc : {totalBackers : 1, votes:1}
       }
     );
   }
@@ -59,6 +66,10 @@ Meteor.methods({
 ////////////////
 // Publishing //
 ////////////////
+Meteor.publish("voice", function (id) {
+  return Voices.find({_id:id});
+});
+
 Meteor.publish("voices", function () {
   return Voices.find({public:true, closed:false},{sort:{createdAt:-1}});
 });

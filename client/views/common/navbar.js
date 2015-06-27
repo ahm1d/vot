@@ -15,24 +15,28 @@ Template.navbar.events({
         "click .fr": function (event) {
              TAPi18n.setLanguage("fr")
                .done(function () {
-                 Session.set("showLoadingIndicator", false);
+                 console.log("Lang set to FR.");
+                 Meteor.call('updateLang', 'fr');
                })
                .fail(function (error_message) {
                  // Handle the situation
                  console.log(error_message);
                });
              T9n.setLanguage('fr');
+             $("#langImg").removeClass('flag-gb').addClass('flag-fr');
         },
         "click .en": function (event) {
               TAPi18n.setLanguage("en")
                 .done(function () {
-                  Session.set("showLoadingIndicator", false);
+                  console.log("Lang set to EN.");
+                  Meteor.call('updateLang', 'en');
                 })
                 .fail(function (error_message) {
                   // Handle the situation
                   console.log(error_message);
                 });
               T9n.setLanguage('en');
+              $("#langImg").removeClass('flag-fr').addClass('flag-gb');
         },
         "click .navbar-brand": function (event) {
                $('html, body').stop().animate({

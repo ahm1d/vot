@@ -45,9 +45,12 @@
                           <p>{{description}}</p>
 
                           {{#if currentUser}}
-                            <button type="button" name="button_{{_id}}" class="btn {{#if novote _id}}btn-primary vote{{else}}btn-success voted{{/if}} "><i class="fa fa-thumbs-up"></i>{{#if novote _id}} Upvote{{/if}}</button>
+                            {{#unless backed _id}}
+                              <button type="button" name="voteBtn_{{_id}}" class="btn {{#unless voted _id}}btn-primary vote{{else}}btn-success voted{{/unless}} "><i class="fa fa-thumbs-up"></i>{{#unless voted _id}} {{_ "upvote"}}{{/unless}}</button>
+                            {{/unless}}
+                            <button type="button" name="backBtn_{{_id}}" class="btn {{#unless backed _id}}btn-primary back{{else}}btn-success{{/unless}} "><i class="glyphicon glyphicon-volume-up"></i>{{#unless backed _id}} {{_ "backVoice"}}{{else}}{{_ "backedVoice"}}{{/unless}}</button>
                           {{/if}}
-                          <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                          <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> {{_ "close"}}</button>
                       </div>
                   </div>
               </div>

@@ -22,5 +22,26 @@
   /*New voice*/
   "newvoice_title" : "Partage ta voix..",
   "newvoice_subtitle" : "..et change le monde autour de toi!",
-  "createvoice" : "Créer une voix"
+  "createvoice" : "Créer une voix",
+
+  /* Back a voice */
+  "backvoice" : "Soutiens cette voix",
+
+  /* Modal voice */
+  "close" : "Fermer",
+  "upvote" : "J'aime",
+  "backvoice" : "Soutenir cette voix",
+  "backedvoice" : "Vous soutenez cette voix!",
+
+  /*Profil*/
+  "userprofile" : "Ton profil",
+  "joined" : "Inscrit le ",
+  "backed" : "A soutenu ",
+  "voices" : " voix",
+  "email" : "Adresse E-mail",
+  "change" : "Changer",
+
+  /*Erreurs*/
+  "err_user_already_exists" : "Utilisateur déjà existant avec cette adresse mail.",
+  "err_invalid_login" : "Email et/ou Mot de passe invalide."
 }
