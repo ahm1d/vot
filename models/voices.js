@@ -28,24 +28,6 @@ Voices.attachSchema(
          }
        }
     },
-    voters:{
-      type: [String],
-      defaultValue: []
-    },
-    votes:{
-      type: Number,
-      defaultValue: 0,
-      min:0
-    },
-    backers:{
-      type: [String],
-      defaultValue: []
-    },
-    totalBackers:{
-      type: Number,
-      defaultValue: 0,
-      min:0
-    },
     picture: {
         type: String,
         autoform: {
@@ -56,6 +38,46 @@ Voices.attachSchema(
             }
         }
     },
+    voters:{
+      type: [String],
+      defaultValue: []
+    },
+    votes:{
+      type: Number,
+      defaultValue: 0,
+      min:0
+    },
+    backers:{
+      type: [Object],
+      optional : true
+    },
+    "backers.$.name": {
+        type: String
+    },
+    "backers.$.type": {
+        type: String
+    },
+    totalBackers:{
+      type: Number,
+      defaultValue: 0,
+      min:0
+    },
+    comments: {
+        type: [Object],
+        optional: true
+    },
+    "comments.$.author": {
+        type: String
+    },
+    "comments.$.authorId": {
+        type: String
+    },
+    "comments.$.content": {
+        type: String
+    },
+    "comments.$.time": {
+        type: Date
+    },
     owner: {
        type: String,
        autoValue: function() {
@@ -63,9 +85,23 @@ Voices.attachSchema(
        }
     },
     createdAt: {
-       type: Date,
-       defaultValue: new Date(),
-       denyUpdate: true
+      type: Date,
+      autoValue: function() {
+        if (this.isInsert) {
+          return new Date;
+        }
+      },
+      denyUpdate: true
+    },
+    updatedAt: {
+      type: Date,
+      autoValue: function() {
+        if (this.isUpdate) {
+          return new Date();
+        }
+      },
+      denyInsert: true,
+      optional: true
     },
     public :{
       type: Boolean,

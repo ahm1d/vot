@@ -2,30 +2,29 @@
   <section id="profile" class="bg-light-gray">
       <div class="container">
           <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">{{_ "userprofile"}}</h2>
-                <br>
-            </div>
-            <div class="col-xs-6 col-md-6 text-center">
+            <div class="col-sm-4 col-md-4 text-center">
               <div class="profile">
-                  <img src="img/team/1.jpg" class="img-responsive img-circle" alt="">
-                  <p class="text-muted">{{currentUser.profile.name}}</p>
-                  <p class="text-muted">{{_ "joined"}}{{currentUser.profile.joined}}</p>
-                  <p class="text-muted">{{_ "backed" }}{{currentUser.profile.backed}}{{_ "voices"}}</p>
+                  <img src="img/team/1.jpg" class="img-responsive img-circle" alt="{{currentUser.profile.name}} profile picture">
               </div>
             </div>
-            <div class="col-xs-6 col-md-6 text-center">
-              <form class="profile-Form form-horizontal">
-                <div class="form-group">
-                  <label for="inputEmail" class="col-md-4 control-label">{{_ "email"}}</label>
-                  <div class="col-md-8">
-                    <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email" value="{{currentUser.username}}">
+            <div class="col-sm-4 col-md-4 text-left" style="margin-top:30px">
+              {{#unless editMode}}
+                <h1 style="margin-top:0px">{{currentUser.profile.name}}</h1>
+              {{else}}
+                <form class="profile-form form-horizontal" role="form">
+                  <div class="form-group">
+                    <div class="col-sm-8 col-md-8">
+                      <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Your name" value="{{currentUser.profile.name}}">
+                    </div>
+                    <button type="submit" class="btn btn-success" >{{_ "change"}}</button>
                   </div>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-default">{{_ "change"}}</button>
-                </div>
-              </form>
+                </form>
+              {{/unless}}
+              <p class="text-muted">{{_ "joined"}}{{currentUser.profile.joined}}</p>
+              <p class="text-muted">{{_ "backed" }}{{currentUser.profile.backed}}{{_ "voices"}}</p>
+            </div>
+            <div class="col-sm-4 col-md-4 text-left" style="margin-top:30px">
+              <button type="button" class="editModeBtn btn {{#unless editMode}}btn-success{{else}}btn-danger{{/unless}}"><i class="glyphicon glyphicon-edit"></i></button>
             </div>
           </div>
       </div>

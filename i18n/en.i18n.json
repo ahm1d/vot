@@ -23,9 +23,6 @@
   "newvoice_title" : "Raise your voice..",
   "newvoice_subtitle" : "..and change the world around you!",
   "createvoice" : "Create a voice",
-  
-  /* Back a voice */
-  "backvoice" : "Back this voice",
 
   /* Modal voice */
   "close" : "Close",
@@ -39,6 +36,7 @@
   "backed" : "Backed ",
   "voices" : " voices",
   "email" : "Email address",
+  "name" : "Name",
   "change" : "Change",
 
   /*Errors*/

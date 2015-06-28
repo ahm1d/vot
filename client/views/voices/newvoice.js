@@ -29,7 +29,7 @@ Meteor.Dropzone.options.resize= function(file) {
 ////////////////////////////
 
 // Uncomment for debug logs
-/* AutoForm.debug(); */
+/*AutoForm.debug();*/
 
 var hooksObject = {
   // Called when any submit operation succeeds

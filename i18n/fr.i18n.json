@@ -24,9 +24,6 @@
   "newvoice_subtitle" : "..et change le monde autour de toi!",
   "createvoice" : "Créer une voix",
 
-  /* Back a voice */
-  "backvoice" : "Soutiens cette voix",
-
   /* Modal voice */
   "close" : "Fermer",
   "upvote" : "J'aime",
@@ -39,6 +36,7 @@
   "backed" : "A soutenu ",
   "voices" : " voix",
   "email" : "Adresse E-mail",
+  "name" : "Nom",
   "change" : "Changer",
 
   /*Erreurs*/

@@ -2,64 +2,69 @@ currentLang = 'fr';
 
 // Methods
 Meteor.methods({
-  /*
-  addVoice: function (name, category, description, location, picture) {
-
-    // Make sure the user is logged in before inserting a Voice
-    if (! Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
-    }
-
-    Voices.insert({
-      name: name,
-      category: category,
-      description: description,
-      location:location,
-      voters:[],
-      votes:0,
-      picture:picture,
-      owner: Meteor.userId(),
-      createdAt: new Date(),
-      closed:false
-    });
-  },
-
-  deleteVoice: function (voiceId) {
-    Voices.remove(voiceId);
-  },*/
-
   updateLang : function(lang) {
     currentLang = lang;
   },
 
   upvote: function (voiceId) {
+    var isVoter = Voices.findOne({'voters':Meteor.user().profile.name});
+    if (isVoter){
+      return;
+    }
+
     Voices.update(
       { _id:voiceId},
       {
-        $addToSet: { voters: this.userId },
+        $addToSet: { voters: Meteor.user().profile.name },
         $inc : {votes : 1}
       }
     );
   },
 
   downvote: function(voiceId) {
+    var isVoter = Voices.findOne({'voters':Meteor.user().profile.name});
+    if (!isVoter){
+      return;
+    }
+
     Voices.update(
       { _id:voiceId},
       {
-        $pull: { voters: this.userId },
+        $pull: { voters: Meteor.user().profile.name },
         $inc : {votes : -1}
       }
     );
   },
 
-  backvoice: function(voiceId) {
+  backvoice: function(voiceId, type) {
+    var backer = Voices.findOne({'backers.name':Meteor.user().profile.name});
+    if (backer){
+      return;
+    }
+
     Voices.update(
       { _id:voiceId},
       {
-        $addToSet: { backers: this.userId, voters: this.userId },
-        $inc : {totalBackers : 1, votes:1}
+        $addToSet: {  backers : {
+                                  name : Meteor.user().profile.name,
+                                  type : type
+                                }
+                   },
+        $inc : {totalBackers : 1}
       }
     );
+
+    var voter = Voices.findOne({'voters':Meteor.user().profile.name});
+
+    if (!voter){
+      Voices.update(
+        { _id:voiceId},
+        {
+          $addToSet: { voters : Meteor.user().profile.name },
+          $inc : {votes : 1}
+        }
+      );
+    }
   }
 });
 
@@ -67,7 +72,7 @@ Meteor.methods({
 // Publishing //
 ////////////////
 Meteor.publish("voice", function (id) {
-  return Voices.find({_id:id});
+  return Voices.find({_id:id, public:true, closed:false});
 });
 
 Meteor.publish("voices", function () {
