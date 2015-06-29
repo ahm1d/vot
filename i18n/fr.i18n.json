@@ -28,7 +28,11 @@
   "close" : "Fermer",
   "upvote" : "J'aime",
   "backvoice" : "Soutenir cette voix",
-  "backedvoice" : "Vous soutenez cette voix!",
+  "comment" : "Commenter",
+  "comments" : "Commentaires",
+  "whatsup" : "Quoi de neuf?",
+  "youare" : "Vous êtes",
+  "backingthisvoice" : "à soutenir cette voix!",
 
   /*Profil*/
   "userprofile" : "Ton profil",

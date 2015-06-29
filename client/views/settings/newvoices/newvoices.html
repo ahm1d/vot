@@ -8,14 +8,11 @@
               </div>
           </div>
           <div class="row">
-              {{#each voices}}
+              {{#each this}}
                   {{> voice}}
+                  {{> modalvoice}}
               {{/each}}
           </div>
       </div>
   </section>
-
-  {{#each voices}}
-      {{> modalvoice}}
-  {{/each}}
 </template>

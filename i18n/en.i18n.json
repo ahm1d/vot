@@ -28,7 +28,11 @@
   "close" : "Close",
   "upvote" : "Upvote",
   "backvoice" : "Back this voice",
-  "backedvoice" : "You are backing this voice!",
+  "comment" : "Comment",
+  "comments" : "Comments",
+  "whatsup" : "What's up?",
+  "youare" : "You are",
+  "backingthisvoice" : "backing this voice!",
 
   /*Profile*/
   "userprofile" : "User profile",

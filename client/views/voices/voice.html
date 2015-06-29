@@ -1,6 +1,6 @@
 <template name="voice">
   <div class="col-md-4 col-sm-6 popular-item">
-      <a href="#{{_id}}" class="popular-link" data-toggle="modal">
+      <a href="#modal_{{_id}}" class="popular-link" data-toggle="modal">
           <div class="popular-hover">
               <div class="popular-hover-content">
                   <i class="fa fa-plus fa-3x"></i>
@@ -16,16 +16,16 @@
             <h4>{{name}}</h4>
             <p class="text-muted">{{category}}</p>
             <br>
-            {{preview description}}
+              {{preview description}}
             <br>
             <br>
-            <i class="fa fa-thumbs-up"></i> {{votes}}
+            <i class="glyphicon glyphicon-volume-up"></i> {{totalBackers}}
         </div>
   </div>
 </template>
 
 <template name="modalvoice">
-  <div class="popular-modal modal fade" id="{{_id}}" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="popular-modal modal fade" id="modal_{{_id}}" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-content">
           <div class="close-modal" data-dismiss="modal">
               <div class="lr">
@@ -37,7 +37,6 @@
               <div class="row">
                   <div class="col-lg-8 col-lg-offset-2">
                       <div class="modal-body">
-                          <!-- Project Details Go Here -->
                           <h2>{{name}}</h2>
                           <p class="item-intro text-muted">{{category}}</p>
                           {{#with getDoc picture 'Images'}}
@@ -47,23 +46,52 @@
 
                           {{#if currentUser}}
                             {{#unless backed _id}}
-                              {{#linkTo route='backvoice' class='btn btn-primary'}}<i class="glyphicon glyphicon-volume-up"></i> {{_ "backvoice"}}{{/linkTo}}
-                              <!--
-                                <a href="{{pathFor route='backvoice'}}"><i class="glyphicon glyphicon-volume-up"></i> {{_ "backvoice"}} 2</a>
-                                <button type="button" name="backBtn_{{_id}}" class="btn {{#if backed _id}}btn-success{{else}}btn-primary back{{/if}} "><i class="fa fa-thumbs-up"></i>{{#unless backed _id}} {{_ "backvoice"}}{{/unless}}</button>
-                              -->
+                              <button type="button" name="backBtn_{{_id}}" class="btn btn-primary backvoice"><i class="glyphicon glyphicon-volume-up"></i>{{_ "backvoice"}}</button>
                               <button type="button" name="voteBtn_{{_id}}" class="btn {{#if voted _id}}btn-success voted{{else}}btn-primary vote{{/if}} "><i class="fa fa-thumbs-up"></i>{{#unless voted _id}} {{_ "upvote"}}{{/unless}}</button>
+                              <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> {{_ "close"}}</button>
+                            {{else}}
+                              <a href="#" class="btn btn-success">{{_ "youare"}} <span class="badge">{{totalBackers}}</span> {{_ "backingthisvoice"}}</a>
                             {{/unless}}
+                            <br/><br/>
                           {{/if}}
-                          <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> {{_ "close"}}</button>
+
+                          {{#if backed _id}}
+                          <section id="comments" class="bg-light-gray">
+                            <div class="container-fluid">
+                              <div class="row">
+                              <h1>{{_ "comments"}}</h1>
+                              <br>
+                              <div class="col-lg-12">
+                                  <div class="media">
+                                  <div class="media-left">
+                                    <a href="#">
+                                      <img class="media-object" src="img/team/2.jpg" alt="{{currentUser.profile.name}} profile picture">
+                                    </a>
+                                  </div>
+                                  <div class="media-body">
+                                    <h5 class="media-heading">{{currentUser.profile.name}}</h5>
+                                    <form class="comment-form form-horizontal" role="form">
+                                      <div class="form-group">
+                                        <div class="col-sm-8 col-md-8 col-lg-8">
+                                            <textarea class="form-control" rows="2" name="inputComment" id="inputComment" placeholder='{{_ "whatsup"}}' required></textarea>
+                                        </div>
+                                        <div class="col-sm-2 col-md-2 col-lg-2">
+                                          <button type="submit" class="btn btn-primary" >{{_ "comment"}}</button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+
+                                  {{#each this.comments}}
+                                    {{> comment}}
+                                  {{/each}}
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                          {{/if}}
                       </div>
-                      {{#if backed _id}}
-                        <div class="col-lg-12">
-                          {{#each comments _id}}
-                            {{> comment}}
-                          {{/each}}
-                        </div>
-                      {{/if}}
                   </div>
               </div>
           </div>
@@ -72,15 +100,15 @@
 </template>
 
 <template name="comment">
-  <div class="media">
-  <div class="media-left">
-    <a href="#">
-      <img class="media-object" src="img/team/2.jpg" alt="Commenter profile picture">
-    </a>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading">Author</h4>
-    ...
-  </div>
-</div>
+    <div class="media">
+      <div class="media-left">
+        <a href="#">
+          <img class="media-object" src="img/team/2.jpg" alt="{{author}} profile picture">
+        </a>
+      </div>
+      <div class="media-body">
+        <h5 class="media-heading">{{author}} -- {{formatTime time}}</h5>
+        {{content}}
+      </div>
+    </div>
 </template>

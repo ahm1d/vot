@@ -26,9 +26,3 @@ Template.home.rendered=function () {
         }
     });
 };
-
-Template.home.helpers({
-        popvoices: function () {
-            return Voices.find({});
-        }
-});

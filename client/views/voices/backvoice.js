@@ -12,8 +12,13 @@ Template.backvoice.helpers({
 
 Template.backvoice.events({
         "submit .backvoice-form": function(event){
-          var type="V";
-          if (event.target[1].checked=='true'){
+          var type = "V";
+
+          if (event.target[0].checked==true && event.target[1].checked==true){
+            type="VD";
+          } else if (event.target[0].checked==true) {
+            type="V";
+          } else if (event.target[1].checked==true) {
             type="D";
           }
 

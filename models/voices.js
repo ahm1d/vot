@@ -28,13 +28,14 @@ Voices.attachSchema(
          }
        }
     },
+    // using the yogiben:autoform-file plugin
     picture: {
         type: String,
         autoform: {
             afFieldInput: {
                 type: 'fileUpload',
                 collection: 'Images',
-                accept: 'image/*'
+                accept: 'image/jpeg'
             }
         }
     },
@@ -69,14 +70,16 @@ Voices.attachSchema(
     "comments.$.author": {
         type: String
     },
-    "comments.$.authorId": {
-        type: String
-    },
     "comments.$.content": {
         type: String
     },
     "comments.$.time": {
         type: Date
+    },
+    totalComments:{
+      type: Number,
+      defaultValue: 0,
+      min:0
     },
     owner: {
        type: String,

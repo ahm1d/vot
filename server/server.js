@@ -7,7 +7,7 @@ Meteor.methods({
   },
 
   upvote: function (voiceId) {
-    var isVoter = Voices.findOne({'voters':Meteor.user().profile.name});
+    var isVoter = Voices.findOne({_id:voiceId, 'voters':Meteor.user().profile.name});
     if (isVoter){
       return;
     }
@@ -22,7 +22,7 @@ Meteor.methods({
   },
 
   downvote: function(voiceId) {
-    var isVoter = Voices.findOne({'voters':Meteor.user().profile.name});
+    var isVoter = Voices.findOne({_id:voiceId, 'voters':Meteor.user().profile.name});
     if (!isVoter){
       return;
     }
@@ -37,7 +37,7 @@ Meteor.methods({
   },
 
   backvoice: function(voiceId, type) {
-    var backer = Voices.findOne({'backers.name':Meteor.user().profile.name});
+    var backer = Voices.findOne({_id:voiceId, 'backers.name':Meteor.user().profile.name});
     if (backer){
       return;
     }
@@ -54,9 +54,11 @@ Meteor.methods({
       }
     );
 
-    var voter = Voices.findOne({'voters':Meteor.user().profile.name});
+    var voter = Voices.findOne({_id:voiceId, 'voters':Meteor.user().profile.name});
+    console.log(voter);
 
     if (!voter){
+      console.log("adding vote");
       Voices.update(
         { _id:voiceId},
         {
@@ -65,6 +67,22 @@ Meteor.methods({
         }
       );
     }
+  },
+
+  commentVoice: function(voiceId, comment){
+    Voices.update(
+      { _id:voiceId},
+      {
+        $addToSet: { comments :
+                    {
+                      author : Meteor.user().profile.name,
+                      content : comment,
+                      time : new Date()
+                    }
+                   },
+        $inc : {totalComments : 1}
+      }
+    );
   }
 });
 
@@ -92,7 +110,7 @@ Meteor.publish("newvoices", function () {
 });
 
 Meteor.publish("popularvoices", function(){
-  return Voices.find({public:true, closed:false},{sort:{votes:-1}, limit:3});
+  return Voices.find({public:true, closed:false},{sort:{totalBackers:-1}, limit:3});
 });
 
   /*
