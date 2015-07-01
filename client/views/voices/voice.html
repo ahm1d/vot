@@ -38,7 +38,10 @@
                   <div class="col-lg-8 col-lg-offset-2">
                       <div class="modal-body">
                           <h2>{{name}}</h2>
+                          <h3 class="section-subheading text-muted">{{_ 'createdOn'}} {{formatDate createdOn}} {{_ 'by'}} {{ownerName}}</h3>
+                          <br>
                           <p class="item-intro text-muted">{{category}}</p>
+
                           {{#with getDoc picture 'Images'}}
                             <img src="{{url}}" class="img-thumbnail img-rounded">
                           {{/with}}
@@ -46,8 +49,8 @@
 
                           {{#if currentUser}}
                             {{#unless backed _id}}
-                              <button type="button" name="backBtn_{{_id}}" class="btn btn-primary backvoice"><i class="glyphicon glyphicon-volume-up"></i>{{_ "backvoice"}}</button>
-                              <button type="button" name="voteBtn_{{_id}}" class="btn {{#if voted _id}}btn-success voted{{else}}btn-primary vote{{/if}} "><i class="fa fa-thumbs-up"></i>{{#unless voted _id}} {{_ "upvote"}}{{/unless}}</button>
+                              <button type="button" class="btn btn-primary backvoice"><i class="glyphicon glyphicon-volume-up"></i>{{_ "backvoice"}}</button>
+                              <button type="button" class="btn {{#if voted _id}}btn-success voted{{else}}btn-primary vote{{/if}} "><i class="fa fa-thumbs-up"></i>{{#unless voted _id}} {{_ "upvote"}}{{/unless}}</button>
                               <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> {{_ "close"}}</button>
                             {{else}}
                               <a href="#" class="btn btn-success">{{_ "youare"}} <span class="badge">{{totalBackers}}</span> {{_ "backingthisvoice"}}</a>

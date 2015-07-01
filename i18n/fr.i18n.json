@@ -19,12 +19,19 @@
   "whatspopular" : "Les plus populaires",
   "about" : "A propos",
 
-  /*New voice*/
+  /*New_voice*/
   "newvoice_title" : "Partage ta voix..",
   "newvoice_subtitle" : "..et change le monde autour de toi!",
   "createvoice" : "Créer une voix",
 
-  /* Modal voice */
+  /*New_voices*/
+  "newvoices" : "Nouvelles voix",
+
+  /*Backing_voices*/
+  "createdOn" : "Créée le",
+  "by" : "par",
+
+  /*Modal_voice*/
   "close" : "Fermer",
   "upvote" : "J'aime",
   "backvoice" : "Soutenir cette voix",

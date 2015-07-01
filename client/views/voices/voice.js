@@ -1,10 +1,14 @@
 Template.modalvoice.events({
   "click .vote": function (event) {
-    Meteor.call("upvote", event.target.name.split("voteBtn_")[1]);
+    console.log("Vote : ");
+    console.log(this._id);
+    Meteor.call("upvote", this._id);
   },
 
   "click .voted": function (event) {
-    Meteor.call("downvote", event.target.name.split("voteBtn_")[1]);
+    console.log("DownVote : ");
+    console.log(this._id);
+    Meteor.call("downvote", this._id);
   },
 
   "click .backvoice": function(event) {
@@ -20,7 +24,5 @@ Template.modalvoice.events({
       Meteor.call("commentVoice", this._id,
                                   event.target.inputComment.value);
       event.preventDefault();
-  },
-
-
+  }
 });

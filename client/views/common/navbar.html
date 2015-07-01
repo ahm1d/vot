@@ -54,24 +54,24 @@
 
                     <!--<li><div class='nav navbar-nav navbar-right'>{{> loginButtons align="right"}}</div></li>-->
                     {{#if currentUser}}
-          						{{> notificationsDropdown}}
+          						{{> notificationsDropdown icon='bell' iconEmpty='bell-o'}}
 
           						<li class="dropdown hidden-xs">
           							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.profile.name}} <i class="fa fa-chevron-down i-xs"></i></a>
           							<ul class="dropdown-menu">
-                          {{#if isAdmin}}
-                            <li><a href="{{pathFor 'newvoices'}}">{{_ "newvoices"}}</a></li>
-                          {{/if}}
-          								<li><a href="{{pathFor 'profile'}}">{{_ "profile"}}</a></li>
-          								<li><a href="{{pathFor 'account'}}">{{_ "account"}}</a></li>
+                          <li><a href="{{pathFor 'profile'}}">{{_ "profile"}}</a></li>
           								<li class="divider"></li>
+                          <!--{{#if session 'isAdmin'}}
+                            <li><a href="{{pathFor 'newvoices'}}">{{_ "newvoices"}}</a></li>
+                            <li class="divider"></li>
+                          {{/if}}-->
           								<li><a href="/sign-out">{{_ "signout"}}</a></li>
           							</ul>
           						</li>
           						<li class="visible-xs">
-          							<a href="{{pathFor 'profile'}}" class="close-navbar">{{_ "edit_profile"}}</a>
+          							<a href="{{pathFor 'profile'}}" class="close-navbar">{{_ "profile"}}</a>
           						</li>
-          						<li class="visible-xs">
+                      <li class="visible-xs">
           							<a class="close-navbar" href="/sign-out">{{_ "signout"}}</a>
           						</li>
           					{{else}}

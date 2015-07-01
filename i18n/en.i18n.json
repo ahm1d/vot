@@ -19,12 +19,19 @@
   "whatspopular" : "What's popular !",
   "about" : "About",
 
-  /*New voice*/
+  /*New_voice*/
   "newvoice_title" : "Raise your voice..",
   "newvoice_subtitle" : "..and change the world around you!",
   "createvoice" : "Create a voice",
 
-  /* Modal voice */
+  /*New_voices*/
+  "newvoices" : "New voices",
+
+  /*Backing_voices*/
+  "createdOn" : "Created on",
+  "by" : "by",
+
+  /*Modal_voice_*/
   "close" : "Close",
   "upvote" : "Upvote",
   "backvoice" : "Back this voice",

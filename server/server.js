@@ -6,8 +6,12 @@ Meteor.methods({
     currentLang = lang;
   },
 
+  isUserAdmin : function(){
+    return Admins.findOne({_id:Meteor.userId()});
+  },
+
   upvote: function (voiceId) {
-    var isVoter = Voices.findOne({_id:voiceId, 'voters':Meteor.user().profile.name});
+    var isVoter = Voices.findOne({_id:voiceId, 'voters':Meteor.userId()});
     if (isVoter){
       return;
     }
@@ -15,14 +19,14 @@ Meteor.methods({
     Voices.update(
       { _id:voiceId},
       {
-        $addToSet: { voters: Meteor.user().profile.name },
+        $addToSet: { voters: Meteor.userId() },
         $inc : {votes : 1}
       }
     );
   },
 
   downvote: function(voiceId) {
-    var isVoter = Voices.findOne({_id:voiceId, 'voters':Meteor.user().profile.name});
+    var isVoter = Voices.findOne({_id:voiceId, 'voters':Meteor.userId()});
     if (!isVoter){
       return;
     }
@@ -30,14 +34,19 @@ Meteor.methods({
     Voices.update(
       { _id:voiceId},
       {
-        $pull: { voters: Meteor.user().profile.name },
+        $pull: { voters: Meteor.userId() },
         $inc : {votes : -1}
       }
     );
   },
 
   backvoice: function(voiceId, type) {
-    var backer = Voices.findOne({_id:voiceId, 'backers.name':Meteor.user().profile.name});
+    console.log('voiceId');
+    console.log(voiceId);
+    console.log('type');
+    console.log(type);
+
+    var backer = Voices.findOne({_id:voiceId, 'backers.id':Meteor.userId()});
     if (backer){
       return;
     }
@@ -46,27 +55,13 @@ Meteor.methods({
       { _id:voiceId},
       {
         $addToSet: {  backers : {
-                                  name : Meteor.user().profile.name,
+                                  id : Meteor.userId(),
                                   type : type
                                 }
                    },
         $inc : {totalBackers : 1}
       }
-    );
-
-    var voter = Voices.findOne({_id:voiceId, 'voters':Meteor.user().profile.name});
-    console.log(voter);
-
-    if (!voter){
-      console.log("adding vote");
-      Voices.update(
-        { _id:voiceId},
-        {
-          $addToSet: { voters : Meteor.user().profile.name },
-          $inc : {votes : 1}
-        }
-      );
-    }
+    )
   },
 
   commentVoice: function(voiceId, comment){
@@ -75,6 +70,7 @@ Meteor.methods({
       {
         $addToSet: { comments :
                     {
+                      authorId : Meteor.userId(),
                       author : Meteor.user().profile.name,
                       content : comment,
                       time : new Date()
@@ -83,33 +79,45 @@ Meteor.methods({
         $inc : {totalComments : 1}
       }
     );
+  },
+
+  newVoicesToNotif : function(lastConnectionDate){
+    var v = Voices.find({public:false, createdOn:{$gt:Date(lastConnectionDate)}}).fetch();
+    if (v.length>0){
+      return true;
+    } else {
+      return false;
+    }
   }
 });
 
 ////////////////
 // Publishing //
 ////////////////
-Meteor.publish("voice", function (id) {
+Meteor.publish("voices", function () {
+  return Voices.find({public:true, closed:false},{sort:{createdOn:-1}});
+});
+
+Meteor.publish("voiceById", function (id) {
   return Voices.find({_id:id, public:true, closed:false});
 });
 
-Meteor.publish("voices", function () {
-  return Voices.find({public:true, closed:false},{sort:{createdAt:-1}});
+Meteor.publish("voicesByName", function (name) {
+  if (name){
+    name=name.replace(new RegExp('['-']', 'g'), ' ');
+  }
+    return Voices.find({$text : {$search : name}, public:true, closed:false},{sort:{createdOn:-1}});
 });
 
-Meteor.publish("voicesbyname", function (name) {
-    return Voices.find({$text : {$search : name}, public:true, closed:false},{sort:{createdAt:-1}});
+Meteor.publish("voicesNotPublished", function () {
+  return Voices.find({public:false},{sort:{createdOn:-1}});
 });
 
 Meteor.publish("images", function(){
     return Images.find();
 });
 
-Meteor.publish("newvoices", function () {
-  return Voices.find({public:false},{sort:{createdAt:-1}});
-});
-
-Meteor.publish("popularvoices", function(){
+Meteor.publish("popularVoices", function(){
   return Voices.find({public:true, closed:false},{sort:{totalBackers:-1}, limit:3});
 });
 
@@ -135,7 +143,7 @@ Meteor.publish("popularvoices", function(){
   var result = Voices.aggregate(pipeline);
 
   if (result.length == 0) {
-      return Voices.find({closed:false},{sort:{createdAt:-1}, limit:3});
+      return Voices.find({closed:false},{sort:{createdOn:-1}, limit:3});
   } else {
     _(result).each(function(voice) {
       self.added('voices', voice._id._id, {description: voice._id.description,

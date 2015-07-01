@@ -1,18 +1,24 @@
 Template.profile.events({
         "submit .profile-form": function (event) {
+
+          var oldProfileName = Meteor.user().profile.name;
+            console.log("Old Profile name : "+oldProfileName);
+
             Meteor.users.update(
               { _id : Meteor.userId()},
               {
                 $set: { "profile.name" : event.target.inputName.value  }
               }
             );
+
+            Meteor.call('updateVoicesByOwner', oldProfileName, event.target.inputName.value);
+
             Session.set("editMode", false);
             event.preventDefault();
         },
 
         "click .editModeBtn": function(event){
-          var value = !Session.get('editMode');
-          Session.set('editMode', value);
+          Session.set('editMode', !Session.get('editMode'));
         }
 });
 

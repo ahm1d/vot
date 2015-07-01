@@ -1,17 +1,7 @@
-Template.backvoice.helpers({
-        author: function() {
-          //console.log(this);
-          var user = Meteor.users.findOne({'_id' : this.owner});
-          if (user){
-            return user.profile.name;
-          } else {
-            return 'Unknown';
-          }
-        }
-});
-
 Template.backvoice.events({
         "submit .backvoice-form": function(event){
+          event.preventDefault();
+
           var type = "V";
 
           if (event.target[0].checked==true && event.target[1].checked==true){
@@ -23,6 +13,8 @@ Template.backvoice.events({
           }
 
           Meteor.call('backvoice', this._id, type);
-          event.preventDefault();
+
+          // TODO: find a way to call this path and replace ' ' by '-' automatically everywhere in the code.
+          Router.go('explore.byname', {_name:this.name.replace(new RegExp('[\' \']', 'g'), '-')})
         }
 });

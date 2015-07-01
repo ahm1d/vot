@@ -6,7 +6,8 @@ Template.navbar.events({
            if (srch==""){
               Router.go('explore');
            } else {
-              Router.go('explore.byname', {_name: srch});
+             // TODO: find a way to call this path and replace ' ' by '-' automatically everywhere in the code.
+              Router.go('explore.byname', {_name: srch.replace(new RegExp('[\' \']', 'g'), '-')});
            }
 
            // Prevent default form submit
@@ -45,8 +46,11 @@ Template.navbar.events({
         }
 });
 
-Template.navbar.helpers({
-  isAdmin:function(){
-    return Meteor.user().isAdmin;
-  }
+Template.navbar.onRendered(function(){
+  Meteor.call('isUserAdmin', function (error, result) {
+    if (result){
+      console.log("OK");
+      Session.set('isAdmin', true);
+    }
+  });
 });

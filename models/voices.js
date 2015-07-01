@@ -50,9 +50,9 @@ Voices.attachSchema(
     },
     backers:{
       type: [Object],
-      optional : true
+      defaultValue: []
     },
-    "backers.$.name": {
+    "backers.$.id": {
         type: String
     },
     "backers.$.type": {
@@ -66,6 +66,9 @@ Voices.attachSchema(
     comments: {
         type: [Object],
         optional: true
+    },
+    "comments.$.authorId": {
+        type: String
     },
     "comments.$.author": {
         type: String
@@ -84,10 +87,13 @@ Voices.attachSchema(
     owner: {
        type: String,
        autoValue: function() {
-         return this.userId;
-       }
+         if (this.isInsert){
+           return this.userId;
+         }
+       },
+       denyUpdate:true
     },
-    createdAt: {
+    createdOn: {
       type: Date,
       autoValue: function() {
         if (this.isInsert) {
@@ -96,7 +102,7 @@ Voices.attachSchema(
       },
       denyUpdate: true
     },
-    updatedAt: {
+    updatedOn: {
       type: Date,
       autoValue: function() {
         if (this.isUpdate) {
@@ -108,7 +114,7 @@ Voices.attachSchema(
     },
     public :{
       type: Boolean,
-      defaultValue: false
+      defaultValue: true
     },
     closed:{
       type: Boolean,
@@ -121,14 +127,33 @@ Voices.attachSchema(
 // Add custom permission rules if needed
 if (Meteor.isServer) {
   Voices.allow({
-    insert : function () {
-      return true;
+    insert : function (userId, doc) {
+      // the user must be logged in, and the document must be owned by the user
+      console.log("Allow method : Insert operation ");
+      console.log("doc");
+      console.log(doc);
+      console.log("userId");
+      console.log(userId);
+      return (userId && doc.owner === userId);
     },
-    update : function () {
-      return true;
+
+    update: function (userId, doc, fields, modifier) {
+      // can only change your own documents
+      console.log("Allow method : Update operation ");
+      console.log("doc");
+      console.log(doc);
+      console.log("userId");
+      console.log(userId);
+      return doc.owner === userId;
     },
-    remove : function () {
-      return true;
+
+    remove: function (userId, doc) {
+      console.log("Allow method : Remove operation ");
+      console.log("doc");
+      console.log(doc);
+      console.log("userId");
+      console.log(userId);
+      return doc.owner === userId;
     }
   });
 }

@@ -38,7 +38,6 @@ cfs:worker@0.1.4
 check@1.0.5
 cmather:handlebars-server@2.0.0
 coffeescript@1.0.6
-dbarrett:dropzonejs@4.0.2
 dburles:mongo-collection-instances@0.3.3
 ddp@1.1.0
 deps@1.0.7
