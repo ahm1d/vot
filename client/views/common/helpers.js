@@ -9,13 +9,23 @@ Template.registerHelper('session', function(v){
 // returns a formatted human readable time DD/MM/YYYY HH24:min
 Template.registerHelper('formatTime',
   function(time){
-    return (time.getDate()+'/'+(time.getMonth()+1)+'/'+time.getFullYear()+' - '+time.getHours()+':'+time.getMinutes());
+    if (!time){
+      return;
+    }
+    var minutes = time.getMinutes();
+    if (minutes<10){
+      minutes = '0' + minutes;
+    }
+    return (time.getDate()+'/'+(time.getMonth()+1)+'/'+time.getFullYear()+' - '+time.getHours()+':'+minutes);
   }
 );
 
 // returns a formatted human readable date DD/MM/YYYY
 Template.registerHelper('formatDate',
   function(date){
+    if (!date){
+      return;
+    }
     return (date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear());
   }
 );

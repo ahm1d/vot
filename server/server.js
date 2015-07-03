@@ -41,11 +41,6 @@ Meteor.methods({
   },
 
   backvoice: function(voiceId, type) {
-    console.log('voiceId');
-    console.log(voiceId);
-    console.log('type');
-    console.log(type);
-
     var backer = Voices.findOne({_id:voiceId, 'backers.id':Meteor.userId()});
     if (backer){
       return;
@@ -102,11 +97,11 @@ Meteor.publish("voiceById", function (id) {
   return Voices.find({_id:id, public:true, closed:false});
 });
 
-Meteor.publish("voicesByName", function (name) {
-  if (name){
-    name=name.replace(new RegExp('['-']', 'g'), ' ');
+Meteor.publish("voicesByTitle", function (title) {
+  if (title){
+    title=title.replace(new RegExp('['-']', 'g'), ' ');
   }
-    return Voices.find({$text : {$search : name}, public:true, closed:false},{sort:{createdOn:-1}});
+    return Voices.find({$text : {$search : title}, public:true, closed:false},{sort:{createdOn:-1}});
 });
 
 Meteor.publish("voicesNotPublished", function () {
@@ -134,7 +129,7 @@ Meteor.publish("popularVoices", function(){
                     description: "$description",
                     category: "$category",
                     picture: "$picture",
-                    name: "$name"},
+                    title: "$title"},
               votes: {$sum: "$voters"}}},
     {$sort: {votes : -1}},
     {$limit: 3}
@@ -148,7 +143,7 @@ Meteor.publish("popularVoices", function(){
     _(result).each(function(voice) {
       self.added('voices', voice._id._id, {description: voice._id.description,
                                         picture: voice._id.picture,
-                                        name: voice._id.name,
+                                        title: voice._id.title,
                                           category: voice._id.category,
                                           votes: voice.votes});
     });

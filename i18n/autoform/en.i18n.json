@@ -1,0 +1,37 @@
+{
+  "schemas": {
+    "voices": {
+      "title": {
+        "label": "Title",
+        "placeholder": "Enter a title for your voice"
+      },
+      "category": {
+        "label": "Category",
+        "placeholder": "Select a category",
+        "options": {
+          "culture": "Culture",
+          "music": "Music",
+          "art": "Art",
+          "social": "Social",
+          "other" : "Other"
+        }
+      },
+      "description": {
+        "label": "Description"
+      },
+      "location": {
+        "label" : "Location",
+        "placeholder": "Select a location",
+        "options": {
+          "tangier": "Tangier",
+          "casablanca": "Casablanca",
+          "fes": "Fes",
+          "marrakech": "Marrakech"
+        }
+      },
+      "picture": {
+        "label" : "Picture"
+      }
+    }
+  }
+}

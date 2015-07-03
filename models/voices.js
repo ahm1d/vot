@@ -2,18 +2,18 @@ Voices = new Mongo.Collection('voices');
 
 Voices.attachSchema(
     new SimpleSchema({
-    name: {
+    title: {
        type: String,
        max : 60
     },
     category: {
-       type: String,
-       allowedValues: ["Art", "Music"],
-       autoform: {
+       type: String
+       //allowedValues: ["Art", "Music"],
+       /*autoform: {
          afFieldInput: {
-           firstOption: ""
+           firstOption: "Other"
          }
-       }
+       }*/
     },
     description: {
        type: String,
@@ -120,7 +120,7 @@ Voices.attachSchema(
       type: Boolean,
       defaultValue: false
     }
-  })
+  }).i18n("schemas.voices")
 );
 
 // Collection2 already does schema checking
