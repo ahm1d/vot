@@ -19,6 +19,10 @@
   "whatspopular" : "Les plus populaires",
   "about" : "A propos",
 
+  /*Explore*/
+  "hear_your_city" : "Hear your city!",
+  "what_are_you_waiting_for" : "What are you waiting for?",
+
   /*New_voice*/
   "newvoice_title" : "Partage ta voix..",
   "newvoice_subtitle" : "..et change le monde autour de toi!",

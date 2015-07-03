@@ -19,6 +19,10 @@
   "whatspopular" : "What's popular !",
   "about" : "About",
 
+  /*Explore*/
+  "hear_your_city" : "Hear your city!",
+  "what_are_you_waiting_for" : "What are you waiting for?",
+
   /*New_voice*/
   "newvoice_title" : "Raise your voice..",
   "newvoice_subtitle" : "..and change the world around you!",

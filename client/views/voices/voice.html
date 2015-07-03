@@ -6,21 +6,19 @@
                   <i class="fa fa-plus fa-3x"></i>
               </div>
           </div>
-
           {{#with getDoc picture 'Images'}}
             <img src="{{url}}" class="img-thumbnail img-rounded img-responsive" >
           {{/with}}
-
-        </a>
-        <div class="popular-caption">
-            <h4>{{name}}</h4>
-            <p class="text-muted">{{category}}</p>
-            <br>
-              {{preview description}}
-            <br>
-            <br>
-            <i class="glyphicon glyphicon-volume-up"></i> {{totalBackers}}
-        </div>
+      </a>
+      <div class="popular-caption">
+          <h4>{{name}}</h4>
+          <p class="text-muted">{{category}}</p>
+          <br>
+            {{preview description}}
+          <br>
+          <br>
+          <i class="glyphicon glyphicon-volume-up"></i> {{totalBackers}}
+      </div>
   </div>
 </template>
 
@@ -43,7 +41,7 @@
                           <p class="item-intro text-muted">{{category}}</p>
 
                           {{#with getDoc picture 'Images'}}
-                            <img src="{{url}}" class="img-thumbnail img-rounded">
+                            <img src="{{url}}" class="img-thumbnail img-rounded" >
                           {{/with}}
                           <p>{{description}}</p>
 
@@ -68,7 +66,7 @@
                                   <div class="media">
                                   <div class="media-left">
                                     <a href="#">
-                                      <img class="media-object" src="img/team/2.jpg" alt="{{currentUser.profile.name}} profile picture">
+                                      <img class="media-object" src="#" alt="{{currentUser.profile.name}} profile picture">
                                     </a>
                                   </div>
                                   <div class="media-body">
