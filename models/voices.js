@@ -8,25 +8,13 @@ Voices.attachSchema(
     },
     category: {
        type: String
-       //allowedValues: ["Art", "Music"],
-       /*autoform: {
-         afFieldInput: {
-           firstOption: "Other"
-         }
-       }*/
     },
     description: {
        type: String,
        max:2000
     },
     location: {
-       type: String,
-       allowedValues: ["Tanger", "Casablanca"],
-       autoform: {
-         afFieldInput: {
-           firstOption: ""
-         }
-       }
+       type: String
     },
     // using the yogiben:autoform-file plugin
     picture: {
@@ -84,14 +72,19 @@ Voices.attachSchema(
       defaultValue: 0,
       min:0
     },
-    owner: {
-       type: String,
-       autoValue: function() {
-         if (this.isInsert){
-           return this.userId;
-         }
-       },
-       denyUpdate:true
+    owner:{
+      type: Object,
+      autoValue: function(){
+        if (this.isInsert){
+          return {id:this.userId,name:Meteor.user().profile.name};
+        }
+      }
+    },
+    "owner.id": {
+       type: String
+    },
+    "owner.name":{
+      type: String
     },
     createdOn: {
       type: Date,
@@ -120,7 +113,8 @@ Voices.attachSchema(
       type: Boolean,
       defaultValue: false
     }
-  }).i18n("schemas.voices")
+  })
+  //.i18n("schemas.voices")
 );
 
 // Collection2 already does schema checking
@@ -134,7 +128,7 @@ if (Meteor.isServer) {
       console.log(doc);
       console.log("userId");
       console.log(userId);
-      return (userId && doc.owner === userId);
+      return (userId && doc.owner.id === userId);
     },
 
     update: function (userId, doc, fields, modifier) {
@@ -144,7 +138,7 @@ if (Meteor.isServer) {
       console.log(doc);
       console.log("userId");
       console.log(userId);
-      return doc.owner === userId;
+      return doc.owner.id === userId;
     },
 
     remove: function (userId, doc) {
@@ -153,7 +147,7 @@ if (Meteor.isServer) {
       console.log(doc);
       console.log("userId");
       console.log(userId);
-      return doc.owner === userId;
+      return doc.owner.id === userId;
     }
   });
 }
