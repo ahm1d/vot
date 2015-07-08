@@ -23,6 +23,13 @@ Meteor.methods({
         $inc : {votes : 1}
       }
     );
+
+    Meteor.users.update(
+      { _id : Meteor.userId() },
+      {
+        $inc : {"profile.upvotes" : 1}
+      }
+    );
   },
 
   downvote: function(voiceId) {
@@ -36,6 +43,13 @@ Meteor.methods({
       {
         $pull: { voters: Meteor.userId() },
         $inc : {votes : -1}
+      }
+    );
+
+    Meteor.users.update(
+      { _id : Meteor.userId() },
+      {
+        $inc : {"profile.upvotes" : -1}
       }
     );
   },
@@ -56,7 +70,14 @@ Meteor.methods({
                    },
         $inc : {totalBackers : 1}
       }
-    )
+    );
+
+    Meteor.users.update(
+      { _id : Meteor.userId() },
+      {
+        $inc : {"profile.backed" : 1}
+      }
+    );
   },
 
   commentVoice: function(voiceId, comment){
@@ -90,7 +111,10 @@ Meteor.methods({
 // Publishing //
 ////////////////
 Meteor.publish("voices", function () {
-  return Voices.find({public:true, closed:false},{sort:{createdOn:-1}});
+  var voices = Voices.find({public:true, closed:false},{sort:{createdOn:-1}});
+
+  return [voices,
+          UsersInfos.find({_id: {$in : getVoicesUsersIds(voices)}})];
 });
 
 Meteor.publish("voiceById", function (id) {
@@ -99,9 +123,12 @@ Meteor.publish("voiceById", function (id) {
 
 Meteor.publish("voicesByTitle", function (title) {
   if (title){
-    title=title.replace(new RegExp('['-']', 'g'), ' ');
+    title = title.replace(new RegExp('['-']', 'g'), ' ');
+  } else {
+    title = '';
   }
-    return Voices.find({$text : {$search : title}, public:true, closed:false},{sort:{createdOn:-1}});
+
+  return Voices.find({$text : {$search : title}, public:true, closed:false},{sort:{createdOn:-1}});
 });
 
 Meteor.publish("voicesNotPublished", function () {
@@ -113,39 +140,38 @@ Meteor.publish("images", function(){
 });
 
 Meteor.publish("popularVoices", function(){
-  return Voices.find({public:true, closed:false},{sort:{totalBackers:-1}, limit:3});
+  var popVoices = Voices.find({public:true, closed:false},{sort:{totalBackers:-1}, limit:3});
+
+
+  return [popVoices, UsersInfos.find({_id: {$in : getVoicesUsersIds(popVoices)}})];
 });
 
-  /*
-  Meteor.publish("popularvoices", function(){
-
-  self = this;
-
-  // Get the 3 most voted voices
-  var pipeline = [
-    {$unwind: "$voters"},
-    {$match : { closed : false } },
-    {$group: {_id: {_id: "$_id",
-                    description: "$description",
-                    category: "$category",
-                    picture: "$picture",
-                    title: "$title"},
-              votes: {$sum: "$voters"}}},
-    {$sort: {votes : -1}},
-    {$limit: 3}
-  ];
-
-  var result = Voices.aggregate(pipeline);
-
-  if (result.length == 0) {
-      return Voices.find({closed:false},{sort:{createdOn:-1}, limit:3});
-  } else {
-    _(result).each(function(voice) {
-      self.added('voices', voice._id._id, {description: voice._id.description,
-                                        picture: voice._id.picture,
-                                        title: voice._id.title,
-                                          category: voice._id.category,
-                                          votes: voice.votes});
-    });
+Meteor.publish("usersInfos", function (usersIdArray) {
+  if (!usersId){
+    this.ready();
   }
-  */
+
+  return UsersInfos.find({_id: {$in : usersIdArray}});
+});
+
+// Server local Methods
+getVoicesUsersIds = function (voices){
+  var usersIds = new Array();
+
+  voices.forEach(function (voice) {
+
+    if (!_.contains(usersIds,voice.owner.id)){
+      usersIds.push(voice.owner.id);
+    }
+
+    if (voice.comments && voice.comments.length>0){
+      _.each(voice.comments, function(e, i, list){
+        if (!_.contains(usersIds,e.authorId)){
+          usersIds.push(e.authorId);
+        }
+      });
+    }
+  });
+
+  return usersIds;
+}

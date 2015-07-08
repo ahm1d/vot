@@ -15,6 +15,6 @@ Template.backvoice.events({
           Meteor.call('backvoice', this._id, type);
 
           // TODO: find a way to call this path and replace ' ' by '-' automatically everywhere in the code.
-          Router.go('explore.byname', {_name:this.name.replace(new RegExp('[\' \']', 'g'), '-')})
+          Router.go('explore.bytitle', {_title:this.title.replace(new RegExp('[\' \']', 'g'), '-')})
         }
 });

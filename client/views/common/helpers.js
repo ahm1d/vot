@@ -6,6 +6,15 @@ Template.registerHelper('session', function(v){
     return Session.get(v);
 });
 
+Template.registerHelper('getProfilePicture', function(userId){
+  var user = UsersInfos.findOne({_id:userId});
+  if (user){
+    return user.picture;
+  } else {
+    return '';
+  }
+});
+
 // returns a formatted human readable time DD/MM/YYYY HH24:min
 Template.registerHelper('formatTime',
   function(time){

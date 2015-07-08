@@ -20,8 +20,8 @@
   "about" : "A propos",
 
   /*Explore*/
-  "hear_your_city" : "Hear your city!",
-  "what_are_you_waiting_for" : "What are you waiting for?",
+  "hear_your_city" : "Explore les voix de ta ville!",
+  "what_are_you_waiting_for" : "Qu'attends-tu pour participer?",
 
   /*New_voice*/
   "newvoice_title" : "Partage ta voix..",
@@ -53,8 +53,12 @@
   "email" : "Adresse E-mail",
   "name" : "Nom",
   "change" : "Changer",
+  "upvoted_voices" : "Voix favorites",
+  "backed_voices" : "Voix soutenues",
+  "my_voices" : "Mes voix",
 
   /*Erreurs*/
   "err_user_already_exists" : "Utilisateur déjà existant avec cette adresse mail.",
+  "err_user_creation" : "Erreur lors de la création de l'utilisateur.",
   "err_invalid_login" : "Email et/ou Mot de passe invalide."
 }

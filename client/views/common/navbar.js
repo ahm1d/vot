@@ -7,7 +7,7 @@ Template.navbar.events({
               Router.go('explore');
            } else {
              // TODO: find a way to call this path and replace ' ' by '-' automatically everywhere in the code.
-              Router.go('explore.byname', {_name: srch.replace(new RegExp('[\' \']', 'g'), '-')});
+              Router.go('explore.bytitle', {_title: srch.replace(new RegExp('[\' \']', 'g'), '-')});
            }
 
            // Prevent default form submit
@@ -49,7 +49,6 @@ Template.navbar.events({
 Template.navbar.onRendered(function(){
   Meteor.call('isUserAdmin', function (error, result) {
     if (result){
-      console.log("OK");
       Session.set('isAdmin', true);
     }
   });

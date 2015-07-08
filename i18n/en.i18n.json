@@ -53,8 +53,12 @@
   "email" : "Email address",
   "name" : "Name",
   "change" : "Change",
+  "upvoted_voices" : "Upvoted voices",
+  "backed_voices" : "Backed voices",
+  "my_voices" : "My voices",
 
   /*Errors*/
   "err_user_already_exists" : "Username with the same email address already exists.",
+  "err_user_creation" : "User creation error.",
   "err_invalid_login" : "Email and/or password is invalid."
 }
