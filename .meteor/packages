@@ -28,7 +28,6 @@ yogiben:notifications
 yogiben:helpers
 accounts-base
 yogiben:pretty-email
-accounts-twitter
 accounts-facebook
 useraccounts:bootstrap
 service-configuration

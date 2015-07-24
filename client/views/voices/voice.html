@@ -43,7 +43,7 @@
                           <h2>{{title}}</h2>
                           <h3 class="section-subheading text-muted">{{category}}, <i class="glyphicon glyphicon-map-marker"></i> {{location}}</h3>
                           <br>
-                          <p class="item-intro text-muted">{{_ 'createdOn'}} {{formatDate createdOn}} {{_ 'by'}} {{owner.name}}</p>
+                          <p class="item-intro text-muted">{{_ 'createdOn'}} {{formatDate createdOn}} {{_ 'by'}} {{getUsernameById owner.id}}</p>
 
                           <div class="row">
                               <div class="col-lg-8 col-md-8">
@@ -114,11 +114,11 @@
   <div class="media">
     <div class="media-left">
       <a href="#">
-        <img src="{{getProfilePicture authorId}}" class="media-object" alt="{{currentUser.profile.name}} profile picture">
+        <img src="{{getProfilePictureById authorId}}" class="media-object" alt="{{getUsernameById authorId}} profile picture">
       </a>
     </div>
     <div class="media-body">
-      <h5 class="media-heading">{{author}} -- {{formatTime time}}</h5>
+      <h5 class="media-heading">{{getUsernameById authorId}} -- {{formatTime time}}</h5>
       {{content}}
     </div>
   </div>

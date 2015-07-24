@@ -11,7 +11,7 @@ Template.profile.events({
               }
             );
 
-            Meteor.call('updateVoicesByOwner', oldProfileName, event.target.inputName.value);
+            //Meteor.call('updateVoicesWithNewUsername', oldProfileName, event.target.inputName.value);
 
             Session.set("editMode", false);
             event.preventDefault();

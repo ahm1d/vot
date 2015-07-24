@@ -6,10 +6,19 @@ Template.registerHelper('session', function(v){
     return Session.get(v);
 });
 
-Template.registerHelper('getProfilePicture', function(userId){
-  var user = UsersInfos.findOne({_id:userId});
+Template.registerHelper('getProfilePictureById', function(userId){
+  var user = Meteor.users.findOne({_id:userId});
   if (user){
-    return user.picture;
+    return user.profile.picture;
+  } else {
+    return '';
+  }
+});
+
+Template.registerHelper('getUsernameById', function(userId){
+  var user = Meteor.users.findOne({_id:userId});
+  if (user){
+    return user.profile.name;
   } else {
     return '';
   }

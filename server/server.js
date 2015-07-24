@@ -111,10 +111,7 @@ Meteor.methods({
 // Publishing //
 ////////////////
 Meteor.publish("voices", function () {
-  var voices = Voices.find({public:true, closed:false},{sort:{createdOn:-1}});
-
-  return [voices,
-          UsersInfos.find({_id: {$in : getVoicesUsersIds(voices)}})];
+  return Voices.find({public:true, closed:false},{sort:{createdOn:-1}});
 });
 
 Meteor.publish("voiceById", function (id) {
@@ -140,38 +137,15 @@ Meteor.publish("images", function(){
 });
 
 Meteor.publish("popularVoices", function(){
-  var popVoices = Voices.find({public:true, closed:false},{sort:{totalBackers:-1}, limit:3});
-
-
-  return [popVoices, UsersInfos.find({_id: {$in : getVoicesUsersIds(popVoices)}})];
+  return Voices.find({public:true, closed:false},{sort:{totalBackers:-1}, limit:3});
 });
 
-Meteor.publish("usersInfos", function (usersIdArray) {
-  if (!usersId){
-    this.ready();
-  }
-
-  return UsersInfos.find({_id: {$in : usersIdArray}});
+// allUsersData is used to get users profile pic...etc for comments
+Meteor.publish("allUserData", function () {
+  return Meteor.users.find({},
+                    {fields :{"profile.name":1, "profile.picture":1}});
 });
 
-// Server local Methods
-getVoicesUsersIds = function (voices){
-  var usersIds = new Array();
-
-  voices.forEach(function (voice) {
-
-    if (!_.contains(usersIds,voice.owner.id)){
-      usersIds.push(voice.owner.id);
-    }
-
-    if (voice.comments && voice.comments.length>0){
-      _.each(voice.comments, function(e, i, list){
-        if (!_.contains(usersIds,e.authorId)){
-          usersIds.push(e.authorId);
-        }
-      });
-    }
-  });
-
-  return usersIds;
-}
+Meteor.publish("userData", function () {
+    return Meteor.users.find({_id: this.userId});
+});
